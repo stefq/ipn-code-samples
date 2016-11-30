@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 '''This module processes PayPal Instant Payment Notification messages (IPNs).
 '''
@@ -20,6 +20,11 @@ print()
 # Read and parse query string
 param_str = sys.stdin.readline().strip()
 params = urllib.parse.parse_qsl(param_str)
+
+file_object = open('ipnhistory.txt', 'a')
+file_object.write(param_str)
+file_object.write('\n')
+file_object.close()
 
 # Add '_notify-validate' parameter
 params.append(('cmd', '_notify-validate'))
